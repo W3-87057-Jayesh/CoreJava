@@ -9,9 +9,10 @@ public class FruitBasket {
 		System.out.print("Enter basket size: ");
 		int size = sc.nextInt();
 		Fruit[] basket = new Fruit[size];
-		int counter = 0;
+		int counter = 0,i;
 
 		while (true) {
+			System.out.println("---------------------------------------------------");
 			System.out.println("Options:");
 			System.out.println("1. Add Mango");
 			System.out.println("2. Add Orange");
@@ -22,6 +23,7 @@ public class FruitBasket {
 			System.out.println("7. Mark a fruit as stale");
 			System.out.println("8. Mark all sour fruits stale");
 			System.out.println("10. Exit");
+			System.out.println("---------------------------------------------------");
 			System.out.print("Choose an option: ");
 			int choice = sc.nextInt();
 
@@ -51,31 +53,35 @@ public class FruitBasket {
 				}
 				break;
 			case 4:
+				 i=0;
 				for (Fruit fruit : basket) {
-					if (fruit != null) {
-						System.out.println(fruit.getName());
+					if (fruit != null) {i++;
+						System.out.println("=> "+i+". "+ fruit.getName());
 					}
 				}
 				break;
 			case 5:
-				for (Fruit fruit : basket) {
+				i=0;
+				for (Fruit fruit : basket) {i++;
 					if (fruit != null && fruit.isFresh()) {
-						System.out.println(fruit.toString() + ", Taste: " + fruit.taste());
+						System.out.println("=> "+i+". "+fruit.toString() + ", Taste: " + fruit.taste());
 					}
 				}
 				break;
 			case 6:
 				for (Fruit fruit : basket) {
 					if (fruit != null && !fruit.isFresh()) {
-						System.out.println("Taste: " + fruit.taste());
+						System.out.println("=> "+"Taste: " + fruit.taste());
 					}
 				}
 				break;
 			case 7:
 				System.out.print("Enter index to mark as stale: ");
 				int index = sc.nextInt();
+				index-=1;
 				if (index >= 0 && index < counter) {
 					basket[index].setFresh(false);
+					System.out.println("=> "+"The fruit named " +basket[index].getName()+" is stale now.");
 				} else {
 					System.out.println("Invalid index!");
 				}
@@ -84,10 +90,12 @@ public class FruitBasket {
 				for (Fruit fruit : basket) {
 					if (fruit != null && fruit.taste().equals("sour")) {
 						fruit.setFresh(false);
+						System.out.println("All sour fruits are stale now.");
 					}
 				}
 				break;
 			case 10:
+				System.out.println("Exiting...");
 				sc.close();
 				return;
 			default:

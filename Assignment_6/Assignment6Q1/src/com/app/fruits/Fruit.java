@@ -38,7 +38,7 @@ public String taste() {
 }
 @Override 
 public String toString() {
-	return name+" "+weight+" "+color ;
+	return "Name: "+name+" ,Weight: "+weight+" ,Colour: "+color ;
 }
 
 
